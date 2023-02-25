@@ -1,0 +1,142 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "User API"
+    },
+    "host": "localhost:5000",
+    "basePath": "/api",
+    "schemes": [
+      "http"
+    ],
+    "paths": {
+      "/user": {
+        "get": {
+          "summary": "Retrieve user data",
+          "description": "Retrieves username and cash balance for the specified user ID",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "query",
+              "description": "User ID",
+              "required": true,
+              "type": "integer"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "description": "User's username"
+                  },
+                  "cash": {
+                    "type": "number",
+                    "format": "float",
+                    "description": "User's cash balance"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid request",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string",
+                    "description": "Error message"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "User not found",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string",
+                    "description": "Error message"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/update-profile": {
+        "post": {
+          "summary": "Update user profile",
+          "description": "Updates the specified user's profile with the given message",
+          "consumes": [
+            "application/x-www-form-urlencoded"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "formData",
+              "description": "User ID",
+              "required": true,
+              "type": "integer"
+            },
+            {
+              "name": "message",
+              "in": "formData",
+              "description": "Message to update the user's profile with",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Profile updated successfully",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string",
+                    "description": "Success message"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid request",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string",
+                    "description": "Error message"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "User not found",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string",
+                    "description": "Error message"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
